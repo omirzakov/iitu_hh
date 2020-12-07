@@ -1,0 +1,92 @@
+﻿@model iitu_project_hh.Controllers.Employee
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h4>Имя сотрудника</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Почта</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Позиция</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeePosition, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeePosition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Мобильный телефон</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeePhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>График работы</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeTimeWork, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeTimeWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Фотография сотрудника</h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeePhoto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>Зарплата</h4>
+            <div class="col-md-10 text-center m-auto">
+                @Html.EditorFor(model => model.EmployeeSalary, new { htmlAttributes = new { @class = "form-control m-auto" } })
+                @Html.ValidationMessageFor(model => model.EmployeeSalary, "", new { @class = "text-danger m-auto" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" name="EmployeeOwnerId" value="@User.Identity.GetUserId()" />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="btn btn-primary text-light">
+    @Html.ActionLink("Мои сотрудники", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

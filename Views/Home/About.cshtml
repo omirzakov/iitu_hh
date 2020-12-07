@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h3>@ViewBag.Message</h3>
+
+<div class="alert alert-info mt-3" role="alert">
+    Номер телефона: <a href="tel: +77762884955" class="text-dark" >+7 776 288 49 55</a>
+</div>
+<div class="alert alert-info" role="alert">
+    Почта: <a href="mailto: huistowns@gmail.com" class="text-dark">huistowns@gmail.com</a>
+</div>
+<div class="row" style="margin-top:80px">
+    <div class="col-lg-4">
+        @Html.Partial("LeftPanel")
+    </div>
+    <div class="col-lg-8">
+        @Html.Partial("CenterPanel")
+    </div>
+</div>

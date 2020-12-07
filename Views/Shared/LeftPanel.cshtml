@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "LeftPanel";
+}
+
+<hgroup>
+    <h4 class="text-danger">Ссылки</h4>
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+        <li>@Html.ActionLink("Информация", "About", "Home")</li>
+        <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
+        <li>@Html.ActionLink("Новости", "Index", "NewsModels")</li>
+        <li>@Html.ActionLink("Вакансии", "AllProjects", "EmployeeProjects")</li>
+        <li>@Html.ActionLink("Мои проекты", "Index", "EmployeeProjects")</li>
+        <li>@Html.ActionLink("Мои сотрудники", "Index", "Employees")</li>
+    </ul>
+</hgroup>
+

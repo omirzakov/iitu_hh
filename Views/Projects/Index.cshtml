@@ -1,0 +1,77 @@
+﻿@model IEnumerable<iitu_project_hh.Controllers.Project>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Мои проекты</h2>
+
+<p>
+    @Html.ActionLink("Создать новый проект", "Create")
+</p>
+
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+            <input type="text" placeholder="Поиск новости" id="Search" name="Search" class="form-control" />
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Название проекта
+        </th>
+        <th>
+            Описание
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (User.Identity.GetUserId() == item.ProjectOwnerId)
+        {
+            <tr class="projects">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".projects").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            })
+        })
+    })
+</script>

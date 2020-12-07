@@ -1,0 +1,71 @@
+﻿@model IEnumerable<iitu_project_hh.Models.NewsModels>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Новости";
+}
+
+<h2>Добавить новость</h2>
+
+<p>
+    @Html.ActionLink("Добавить свою новость", "Create")
+</p>
+
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+            <input type="text" placeholder="Поиск новости" id="Search" name="Search" class="form-control" />
+        </div>
+    </div>
+</div>
+
+<div class="row mb-2">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 all-news">
+            <div class="row bg-light no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Новость</strong>
+                    <h3 class="mb-0">@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.AddedTime)</div>
+                    <p class="card-text mb-auto">@Html.DisplayFor(modelItem => item.Text)</p>
+                    @if (User.Identity.GetUserId() == item.OwnerId)
+                    {
+                        @Html.ActionLink("Подробнее", "Details", new { id = item.Id })
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Удалить новость", "Delete", new { id = item.Id })
+                    }
+                </div>
+                <div class="col-auto d-none  d-flex align-items-center">
+                    <img src="@Html.DisplayFor(modelItem => item.NewsImage)" alt="Alternate Text" width="200px" height="auto" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".all-news").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            })
+        })
+    })
+</script>
+

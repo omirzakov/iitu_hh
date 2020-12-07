@@ -1,0 +1,53 @@
+﻿@model IEnumerable<iitu_project_hh.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Привет в админ панель</h2>
+
+<div class="row" style="min-height:100vh">
+    <a href="#" class="btn btn-primary  mb-3">Мой профиль</a>
+    <a href="#" class="btn btn-primary mb-3">Все пользователи</a>
+    <a href="#" class="btn btn-primary mb-3">Новости</a>
+    <a href="#" class="btn btn-primary mb-3">Все объявления</a>
+
+    <hr />
+
+    <h3>Все пользователи</h3>
+    <table class="table" style="margin-top: 20px;">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Почта
+            </th>
+            <th>
+                Пароль
+            </th>
+            <th>
+                Полное имя
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PasswordHash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
