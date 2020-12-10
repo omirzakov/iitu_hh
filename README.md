@@ -16,6 +16,24 @@ Use the package manager [Update-Package](https://metanit.com/) to install foobar
 Update-Package -reinstall
 ```
 
+
+## Libraries
+```bash
+Bootstrap
+```
+
+```bash
+Jquery
+```
+
+```bash
+AJAX
+```
+
+```bash
+OAUTH
+```
+
 ## Usage
 
 
